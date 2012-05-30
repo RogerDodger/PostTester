@@ -1,0 +1,24 @@
+﻿/*
+ * custom css for post-tester
+ */
+ 
+.logo {
+	margin-top: 32px;
+}
+
+.postarea input[type=submit] {
+	font-size: 1em;
+}
+
+a.navbarboard {
+	margin-right: -3px;
+}
+
+a.navbarboard[title="All boards"]{
+	margin-right: 1px;
+}
+
+.code{
+	white-space: pre !important;
+	font-family: monospace !important;
+}
