@@ -80,7 +80,7 @@ Note that since I can’t query Ponychan’s database, links to posts in threads
 
 <?php echo _mktitle("File"); ?>
 <div id="t-file">
-The file field contains a URL to an image to load. (Sorry, I’m not hosting your files! Use <a href="http://www.imgur.com">Imgur</a> instead.) Defaults to null.
+The file field allows you to upload an image for your post. Max filesize of 4mb. Defaults to null.
 </div>
 
 <?php echo _mktitle("Settings") ?>

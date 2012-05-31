@@ -1,30 +1,31 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<!-- Post Tester to see how a post will look on Ponychan -->
+<!-- Post Tester to see how a post will look on Ponychan. Written by RogerDodger. -->
 
 <head>
 
-<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
 <title>Post Tester</title>
-<link rel="shortcut icon" href="http://www.ponychan.net/chan/favicon.php">
+<link rel="shortcut icon" href="http://www.ponychan.net/chan/favicon.php" />
 
 <?php 
-include 'pt-php_files/postjelly.php'; 
-include 'pt-php_files/CParse.php';
-include 'pt-php_files/formjelly.php';
 
 if(!isset($path)){
-	$path = dirname($_SERVER["PHP_SELF"]);
+	$path = "/PostTester";
 }
+
+include 'assets/postjelly.php'; 
+include 'assets/CParse.php';
+include 'assets/formjelly.php';
 
 ?>
 	
 
 
-<link rel="stylesheet" type="text/css" href="<?php echo $path.'/pt-php_files/img_global.css'?>">
-<link rel="stylesheet" type="text/css" href="<?php echo $path.'/pt-php_files/colgate.css'?>">
-<link rel="stylesheet" type="text/css" href="<?php echo $path.'/pt-php_files/post-tester.css'?>">
+<link rel="stylesheet" type="text/css" href="<?php echo $path.'/assets/img_global.css'?>" />
+<link rel="stylesheet" type="text/css" href="<?php echo $path.'/assets/colgate.css'?>" />
+<link rel="stylesheet" type="text/css" href="<?php echo $path.'/assets/post-tester.css'?>" />
 
-<script type="text/javascript" src="<?php echo $path.'/pt-php_files/pt-php.js'?>" charset="utf-8"></script>
+<script type="text/javascript" src="<?php echo $path.'/assets/pt-php.js'?>" charset="utf-8"></script>
 <script type="text/javascript">
 window.onload = function (){
 	togboard('<?php echo isset($_POST["board"]) ? $_POST["board"] : 'fic'; ?>');
@@ -103,23 +104,23 @@ function _mkboardlnk($title, $board) {
 
 <div class="postarea">
 	<form action="post-tester.php" method="post" enctype="multipart/form-data">
-	<input type="hidden" name="board" id="formboard" value="<?php echo isset($board)? $board : 'fic'; ?>">
+	<input type="hidden" name="board" id="formboard" value="<?php echo isset($_POST["board"])? $_POST["board"] : 'fic'; ?>" />
 	<table class="postform">
 		<tr>
 			<td class="postblock">Name</td>
-			<td><input type="text" name="name" size="28" maxlength="75" value="<?php echo isset($_POST["name"])? htmlspecialchars($_POST["name"]): ''; ?>"></td>
+			<td><input type="text" name="name" size="28" maxlength="75" value="<?php echo isset($_POST["name"])? htmlspecialchars($_POST["name"]): ''; ?>" /></td>
 		</tr>
 
 		<tr>
 			<td class="postblock">E-mail</td>
-			<td><input type="text" name="email" size="28" maxlength="75" value="<?php echo isset($_POST["email"])? htmlspecialchars($_POST["email"]): ''; ?>"></td>
+			<td><input type="text" name="email" size="28" maxlength="75" value="<?php echo isset($_POST["email"])? htmlspecialchars($_POST["email"]): ''; ?>" /></td>
 		</tr>
 
 		<tr>
 			<td class="postblock">Subject</td>
 			<td>
-				<input type="text" name="title" size="35" maxlength="75" value="<?php echo isset($_POST["title"])? htmlspecialchars($_POST["title"]): ''; ?>">
-				<input type="submit" value="Update Post">
+				<input type="text" name="title" size="35" maxlength="75" value="<?php echo isset($_POST["title"])? htmlspecialchars($_POST["title"]): ''; ?>" />
+				<input type="submit" value="Update Post" />
 			</td>
 		</tr>
 		
@@ -127,18 +128,19 @@ function _mkboardlnk($title, $board) {
 			<td class="postblock">Message</td>
 			<td><textarea name="content" cols="48" rows="6"><?php echo isset($_POST["content"]) ? htmlspecialchars($_POST["content"]) : ''; ?></textarea></td>
 		</tr>
-
+		
 		<tr>
 			<td class="postblock">File</td>
-			<td><input type="text" name="imgsrc" size="35" value="<?php echo isset($_POST["imgsrc"])? htmlspecialchars($_POST["imgsrc"]): ''; ?>"></td>
+			<input type="hidden" name="MAX_FILE_SIZE" value="4194304" />
+			<td><input type="file" name="image" /></td>
 		</tr>
 		
 		<tr>
 			<td class="postblock">Settings</td>
 			<td>
-				<input type="checkbox" name="noparse" <?php if(isset($_POST["noparse"])) {echo 'checked="yes"';} ?>> HTML &nbsp; 
-				<input type="checkbox" name="trunc" <?php if(isset($_POST["trunc"])) {echo 'checked="yes"';} ?>> Truncate &nbsp;
-				<input type="checkbox" name="small-thumb" <?php if(isset($_POST["small-thumb"])) {echo 'checked="yes"';} ?>> Small thumbnail &nbsp;
+				<input type="checkbox" name="noparse" <?php if(isset($_POST["noparse"])) {echo 'checked="yes"';} ?> /> HTML &nbsp; 
+				<input type="checkbox" name="trunc" <?php if(isset($_POST["trunc"])) {echo 'checked="yes"';} ?> /> Truncate &nbsp;
+				<input type="checkbox" name="small-thumb" <?php if(isset($_POST["small-thumb"])) {echo 'checked="yes"';} ?> /> Small thumbnail &nbsp;
 			</td>
 		</tr>
 	</table>
@@ -147,34 +149,58 @@ function _mkboardlnk($title, $board) {
 </div>
 <hr />
 
-<?php if (isset($postlen) && !preg_match('/^\\s*$/', $content)): ?>
+<?php if(isset($postlen) && !preg_match('/^\\s*$/', $content) || 
+		isset($_SERVER["image"]) && $_SERVER["image"]["error"] > 0 ): ?>
+<?php if(isset($postlen) && !preg_match('/^\\s*$/', $content)): ?>
 <p style="text-align:center;">Your post is <?php echo $postlen ?> characters long.</p>
 
-<hr />
-<?php endif ?>
+<?php endif; ?>
 
-<div class="thread" id="threadNNNNN">
+<?php if(isset($_SERVER["image"]) && $_SERVER["image"]["error"] > 0): ?>
+<p><?php
+	switch ($_SERVER["image"]["error"]){
+		case 1:
+		case 2:
+			echo 'Error: Image too large. (Max filesize 4mb)';
+			break;
+		case 3:
+			echo 'Error: Image damaged/lost in transfer.';
+			break;
+		case 4:
+			echo 'Error: File not found.';
+			break;
+		case 6:
+			echo 'Error: Temp folder missing for some reason. Contact the admin.';
+			break;
+		case 7:
+			echo 'Error: Can’t write to disk. Contact the admin.';
+			break;
+		case 8:
+			echo 'Error: An extension blocked the upload. Contact the admin.';
+			break;
+	}
+?></p>
+<?php endif; ?>
+<hr />
+<?php endif; ?>
+
+<div class="thread">
 
 <?php if ($image["exists"]): ?>
 <span class="filesize">
-	File <a href="#" onclick="return false"><?php echo '133'; 
-	foreach(range(0,8) as $dump){ 
-		echo rand(0,9);
-	} 
-	echo '.jpg'; 
-	?></a> - (<?php echo $image["size"] ?>, <span class="dimensions"><?php echo $image["width"].'x'.$image["height"] ?></span>, <?php echo $image["title"]; ?>)
+	File <a href="#" onclick="return false"><?php echo $image["id"]; ?></a> - 
+		(<?php echo $image["size"] ?>, 
+		<span class="dimensions"><?php echo $image["width"].'x'.$image["height"] ?></span>, 
+		<?php echo $image["name"]; ?>)
 </span>
-<br/ >
-<a href="#" onclick="return false"><img <?php echo "src=\"{$image["src"]}\" height=\"{$image["h"]}\" width=\"{$image["w"]}\""?> class="thumb"></a>
+<br />
+<a href="#" onclick="return false"><img <?php echo "src=\"$path/assets/images/{$image["id"]}\" height=\"{$image["h"]}\" width=\"{$image["w"]}\""?> class="thumb" /></a>
 <?php endif; ?>
 
-<a name="NNNNN" style="position: relative; top: -48px; "><span style="position: relative; top: 48px; "></span></a>
 <label>
-	<input type="checkbox">
+	<input type="checkbox" />
 	<?php echo isset($title) ? '<span class="filetitle">'.$title.'</span>' : ''; ?>
-	<span class="postername"><?php echo $name; ?></span><?php 
-	echo isset($trip) ? '<span class="postertrip">!'.$trip.'</span>' : ''; 
-	?>
+	<span class="postername"><?php echo $name; ?></span><?php echo isset($trip) ? '<span class="postertrip">!'.$trip.'</span>' : ''; ?>
 	<span class="posttime"><?php echo date('D, d M Y H:i:s \G\M\T'); ?></span>
 </label>
 
@@ -182,24 +208,15 @@ function _mkboardlnk($title, $board) {
 	<a href="#">No.&nbsp;</a><a href="#">NNNNN</a>
 </span>
 
-<br>
+<br />
 
 <blockquote>
-	<div id="content"><?php if(preg_match('/^\\s*$/', $content)) {include 'pt-php_files/help.php';} else {echo $content;} ?></div>
+	<div id="content"><?php if(preg_match('/^\\s*$/', $content)) {include 'assets/help.php';} else {echo $content;} ?></div>
 </blockquote>
 
 <div class="postfooter">
-	<a href="#" onclick="return false">Reply</a> &#8226; <a href="#" onclick="return false">Watch</a> &#8226; <a href="#" onclick="return false">Report</a>
+	<a href="#" onclick="return false">Reply</a> &#8226; <a href="#" onclick="return false">Report</a>
 </div>
-
-<a href="#" onclick="return false">Unspoiler all text</a> &#8226; <a href="#" onclick="return false">Expand all images</a> &#8226; <a href="#" onclick="return false">Reveal spoilers</a>
-
-<span style="float:right">
-	[<a href="#" onclick="return false">Return</a>]
-	[<a href="#" onclick="return false">Entire Thread</a>]
-	[<a href="#" onclick="return false">Last 50 posts</a>]
-	[<a href="#" onclick="return false">First 100 posts</a>]
-</span>
 
 </div>
 
@@ -208,7 +225,9 @@ function _mkboardlnk($title, $board) {
 <br />
 
 <div class="footer" style="clear:both">
-	Powered by <a href="http://www.kusabax.org/" target="_top" rel="nofollow">Kusaba X</a>
+	Written by <a href="https://www.github.com/RogerDodger/" target="_blank">RogerDodger</a> (<a href="https://github.com/RogerDodger/PostTester" target="_blank">view source</a>)
+	<br />
+	Emulating <a href="http://www.kusabax.org/" target="_blank" rel="nofollow">Kusaba X</a>
 </div>
 
 </body>
