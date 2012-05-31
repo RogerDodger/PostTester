@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- Post Tester to see how a post will look on Ponychan -->
 
 <head>
@@ -11,13 +11,20 @@
 include 'pt-php_files/postjelly.php'; 
 include 'pt-php_files/CParse.php';
 include 'pt-php_files/formjelly.php';
+
+if(!isset($path)){
+	$path = dirname($_SERVER["PHP_SELF"]);
+}
+
 ?>
+	
 
-<link rel="stylesheet" type="text/css" href="pt-php_files/img_global.css">
-<link rel="stylesheet" type="text/css" href="pt-php_files/colgate.css">
-<link rel="stylesheet" type="text/css" href="pt-php_files/post-tester.css">
 
-<script type="text/javascript" src="pt-php_files/pt-php.js" charset="utf-8"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo $path.'/pt-php_files/img_global.css'?>">
+<link rel="stylesheet" type="text/css" href="<?php echo $path.'/pt-php_files/colgate.css'?>">
+<link rel="stylesheet" type="text/css" href="<?php echo $path.'/pt-php_files/post-tester.css'?>">
+
+<script type="text/javascript" src="<?php echo $path.'/pt-php_files/pt-php.js'?>" charset="utf-8"></script>
 <script type="text/javascript">
 window.onload = function (){
 	togboard('<?php echo isset($_POST["board"]) ? $_POST["board"] : 'fic'; ?>');
