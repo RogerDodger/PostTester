@@ -66,7 +66,7 @@ Note that [aa] and [code] will create new blocks. (Essentially this means that t
 <br />
 Any text preceded by <u>http://</u>, <u>https://</u>, or <u>ftp://</u> will parse as a hyperlink. The link will continue “eating” characters until it meets one of following characters (where <span class="code">\s</span> is any whitespace character):
 <ul><li><span class="code">\s()[&lt;|</span></li></ul>
-If you want to break a link with a character not in the above list, you’ll need to put a zero-width space (See <a href="http://en.wikipedia.org/wiki/Space_(punctuation)#Spaces_in_Unicode">[1]</a>) behind it. (This is useful when you want punctuation after a link. Default behaviour would put the punctuation in the link, possibly breaking it.)
+If you want to break a link with a character not in the above list, you’ll need to put a zero-width non joiner (See <a href="http://en.wikipedia.org/wiki/Space_(punctuation)#Spaces_in_Unicode">[1]</a>) behind it. (This is useful when you want punctuation after a link. Default behaviour would put the punctuation in the link, possibly breaking it.)
 <br />
 <br />
 Inter-board links use the following syntax:
