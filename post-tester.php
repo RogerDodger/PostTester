@@ -228,7 +228,7 @@ function _mkboardlnk($title, $board) {
 <br />
 
 <div class="footer" style="clear:both">
-	Written by <a href="https://www.fimfiction.net/user/RogerDodger/" target="_blank">RogerDodger</a> (<a href="https://github.com/RogerDodger/PostTester" target="_blank">view source</a>)
+	Written by <a href="http://www.fimfiction.net/user/RogerDodger/" target="_blank">RogerDodger</a> (<a href="https://github.com/RogerDodger/PostTester" target="_blank">view source</a>)
 	<br />
 	Emulating <a href="http://www.kusabax.org/" target="_blank" rel="nofollow">Kusaba X</a>
 </div>
