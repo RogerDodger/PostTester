@@ -75,7 +75,7 @@ Inter-board links use the following syntax:
 	<li><a href="#" onclick="return false">&gt;&gt;/pony/1234</a> &ndash; Link to a post on another board.
 	<li><a href="#" onclick="return false">&gt;&gt;&gt;/pony/</a> &ndash; Link to another board page.
 </ul>
-Note that since I can’t query Ponychan’s database, links to posts in threads will be broken. I also cannot test the validity of a link, so while links to non-existant posts would not parse on Ponychan, they will here.
+Note that since I can’t query Ponychan’s database, links to posts in threads will be broken. I also cannot test the validity of a link, so while links to non-existent posts would not parse on Ponychan, they will here.
 </div>
 
 <?php echo _mktitle("File"); ?>

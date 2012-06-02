@@ -150,15 +150,15 @@ function _mkboardlnk($title, $board) {
 <hr />
 
 <?php if(isset($postlen) && !preg_match('/^\\s*$/', $content) || 
-		isset($_SERVER["image"]) && $_SERVER["image"]["error"] > 0 ): ?>
+		isset($_FILES["image"]) && $_FILES["image"]["error"] > 0 ): ?>
 <?php if(isset($postlen) && !preg_match('/^\\s*$/', $content)): ?>
 <p style="text-align:center;">Your post is <?php echo $postlen ?> characters long.</p>
 
 <?php endif; ?>
 
-<?php if(isset($_SERVER["image"]) && $_SERVER["image"]["error"] > 0): ?>
-<p><?php
-	switch ($_SERVER["image"]["error"]){
+<?php if(isset($_FILES["image"]) && $_FILES["image"]["error"] > 0): ?>
+<p style="text-align:center;"><?php
+	switch ($_FILES["image"]["error"]){
 		case 1:
 		case 2:
 			echo 'Error: Image too large. (Max filesize 4mb)';
@@ -177,6 +177,9 @@ function _mkboardlnk($title, $board) {
 			break;
 		case 8:
 			echo 'Error: An extension blocked the upload. Contact the admin.';
+			break;
+		case 9:
+			echo 'Error: File is not an image.';
 			break;
 	}
 ?></p>
