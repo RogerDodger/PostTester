@@ -191,7 +191,7 @@ function _mkboardlnk($title, $board) {
 
 <?php if ($image["exists"]): ?>
 <span class="filesize">
-	File <a href="#" onclick="return false"><?php echo $image["id"]; ?></a> - 
+	File <a href="<?php echo $path.'/assets/images/'.$image["id"].'"'; ?>><?php echo $image["id"]; ?></a> - 
 		(<?php echo $image["size"] ?>, 
 		<span class="dimensions"><?php echo $image["width"].'x'.$image["height"] ?></span>, 
 		<?php echo $image["name"]; ?>)
