@@ -55,7 +55,6 @@ function calculateNameAndTripcode($post_name) {
 			/* From Futabally */
 			$cap = strtr($cap, "&amp;", "&");
 			$cap = strtr($cap, "&#44;", ", ");
-			//$cap = htmlspecialchars($cap);
 			$salt = substr($cap."H.", 1, 2);
 			$salt = preg_replace("/[^\.-z]/", ".", $salt);
 			$salt = strtr($salt, ":;<=>?@[\\]^_`", "ABCDEFGabcdef");
