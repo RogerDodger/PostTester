@@ -21,7 +21,7 @@ date_default_timezone_set("UTC");
 define ("KU_LINELENGTH", 1800);
 define ("KU_RANDOMSEED", ''); 
 $boards = array('meta', 'arch', 
-                'pony', 'pic', 'merch', 'oat', 
+				'pony', 'pic', 'merch', 'oat', 
 				'arch', 'fic', 'media', 'collab', 
 				'rp', 'ooc',
 				'phoenix', 'vinyl', 'g', 'dis', 'chat',
@@ -30,6 +30,7 @@ $boards = array('meta', 'arch',
 
 if(isset($_POST["name"]) &&  $_POST["name"]!==''){
 	$name = ($_POST["name"]);
+	$name = htmlspecialchars($name);
 	$return = calculateNameAndTripcode($name);
 	if(is_array($return)){
 		$name = $return[0];
@@ -37,7 +38,6 @@ if(isset($_POST["name"]) &&  $_POST["name"]!==''){
 	} else {
 		$name = $return;
 	}
-	$name = htmlspecialchars($name);
 } else {
 	$name = 'Anonymous';
 }
