@@ -150,13 +150,13 @@ function _mkboardlnk($title, $board) {
 <hr />
 
 <?php if(isset($postlen) && !preg_match('/^\\s*$/', $content) || 
-		isset($_FILES["image"]) && $_FILES["image"]["error"] > 0 ): ?>
+		isset($_FILES["image"]) && $_FILES["image"]["error"] > 0 && $_FILES["image"]["error"] != 4): ?>
 <?php if(isset($postlen) && !preg_match('/^\\s*$/', $content)): ?>
 <p style="text-align:center;">Your post is <?php echo $postlen ?> characters long.</p>
 
 <?php endif; ?>
 
-<?php if(isset($_FILES["image"]) && $_FILES["image"]["error"] > 0): ?>
+<?php if(isset($_FILES["image"]) && $_FILES["image"]["error"] > 0 && $_FILES["image"]["error"] != 4): ?>
 <p style="text-align:center;"><?php
 	switch ($_FILES["image"]["error"]){
 		case 1:
@@ -165,9 +165,6 @@ function _mkboardlnk($title, $board) {
 			break;
 		case 3:
 			echo 'Error: Image damaged/lost in transfer.';
-			break;
-		case 4:
-			echo 'Error: File not found.';
 			break;
 		case 6:
 			echo 'Error: Temp folder missing for some reason. Contact the admin.';
