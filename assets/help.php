@@ -88,7 +88,7 @@ The file field allows you to upload an image for your post. Max filesize of 4mb.
 The settings checkboxes change posting behaviour.
 <ul>
 	<li><b>HTML: </b>Will dump the “Message” field straight in the post without parsing. Be careful: if you don’t close your tags, you might mess the page up.</li>
-	<li><b>Truncate: </b>Will truncate posts of length larger than KU_LINELENGTH (set to 1800, same as Ponychan) or posts with more than 15 <span class="code">&lt;br /&gt;</span>s. This mimics how Ponychan truncates posts to be displayed in the board overviews.</li>
+	<li><b>Truncate: </b>Will truncate posts of length larger than KU_LINELENGTH (set to 1800, same as Ponychan) or posts with 12 or more<span class="code">&lt;br /&gt;</span>s. This mimics how Ponychan truncates posts to be displayed in the board overviews.</li>
 	<li><b>Small thumbnail: </b>Will resize the image to the size of post-thumbs, max 125x125, instead of the size of op-thumbs, max 200x800.</li>
 </ul>
 </div>
