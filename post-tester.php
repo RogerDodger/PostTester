@@ -130,6 +130,11 @@ function _mkboardlnk($title, $board) {
 		</tr>
 		
 		<tr>
+			<td class="postblock">Tags</td>
+			<td><input type="text" name="tags" size="35" maxlength="255" value="<?php echo isset($_POST["tags"])? htmlspecialchars($_POST["tags"]): ''; ?>" /></td>
+		</tr>
+		
+		<tr>
 			<td class="postblock">File</td>
 			<input type="hidden" name="MAX_FILE_SIZE" value="4194304" />
 			<td><input type="file" name="image" /></td>
@@ -149,9 +154,9 @@ function _mkboardlnk($title, $board) {
 </div>
 <hr />
 
-<?php if(isset($postlen) && !preg_match('/^\\s*$/', $content) || 
+<?php if(!$help || 
 		isset($_FILES["image"]) && $_FILES["image"]["error"] > 0 && $_FILES["image"]["error"] != 4): ?>
-<?php if(isset($postlen) && !preg_match('/^\\s*$/', $content)): ?>
+<?php if(!$help): ?>
 <p style="text-align:center;">Your post is <?php echo $postlen ?> characters long.</p>
 
 <?php endif; ?>
@@ -211,7 +216,7 @@ function _mkboardlnk($title, $board) {
 <br />
 
 <blockquote>
-	<div id="content"><?php if(preg_match('/^\\s*$/', $content)) {include 'assets/help.php';} else {echo $content;} ?></div>
+	<div id="content"><?php if($help===true) {include 'assets/help.php';} else {echo $content;} ?></div>
 </blockquote>
 
 <div class="postfooter">

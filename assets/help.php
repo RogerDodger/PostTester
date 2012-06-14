@@ -78,6 +78,11 @@ Inter-board links use the following syntax:
 Note that since I can’t query Ponychan’s database, links to posts in threads will be broken. I also cannot test the validity of a link, so while links to non-existent posts would not parse on Ponychan, they will here.
 </div>
 
+<?php echo _mktitle("Tags"); ?>
+<div id="t-tags">
+The tag field allows you to put tags in your post. They’re basically just boxes with the text prepended by a <span class="code">#</span> character. Tags are separated by commas. If you want to use a literal comma, insert two commas (e.g., to get the tag “#Me, Bob, and Alice”, input <span class="code">Me,, Bob,, and Alice</span>).
+</div>
+
 <?php echo _mktitle("File"); ?>
 <div id="t-file">
 The file field allows you to upload an image for your post. Max filesize of 4mb. Defaults to null.
@@ -88,7 +93,7 @@ The file field allows you to upload an image for your post. Max filesize of 4mb.
 The settings checkboxes change posting behaviour.
 <ul>
 	<li><b>HTML: </b>Will dump the “Message” field straight in the post without parsing. Be careful: if you don’t close your tags, you might mess the page up.</li>
-	<li><b>Truncate: </b>Will truncate posts of length larger than KU_LINELENGTH (set to 1800, same as Ponychan) or posts with 12 or more<span class="code">&lt;br /&gt;</span>s. This mimics how Ponychan truncates posts to be displayed in the board overviews.</li>
+	<li><b>Truncate: </b>Will truncate posts of length larger than KU_LINELENGTH (set to 1800, same as Ponychan) or posts with 12 or more <span class="code">&lt;br /&gt;</span>s. This mimics how Ponychan truncates posts to be displayed in the board overviews.</li>
 	<li><b>Small thumbnail: </b>Will resize the image to the size of post-thumbs, max 125x125, instead of the size of op-thumbs, max 200x800.</li>
 </ul>
 </div>

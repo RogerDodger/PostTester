@@ -58,12 +58,30 @@ if(isset($_POST["content"])){
 	if(!isset($_POST["noparse"])){
 		$content = $parse->ParsePost($content, isset($_POST["board"])?$_POST["board"]:'fic');
 	}
-	$postlen = strlen($content);
-	if(isset($_POST["trunc"])){
-		$content = formatLongMessage($content);
-	}
 } else {
 	$content = '';
+}
+
+$help = preg_match('/^\\s*$/', $content)? true : false;
+
+if(isset($_POST["tags"]) && $_POST["tags"] != ''){
+	$input = str_replace(",,", "&#44;", htmlspecialchars($_POST["tags"]));
+	$tags = explode(",", $input);
+	
+	//$prepend is the string to be prepened to $content
+	$prepend = "<div class=rp-tags>";
+	foreach ($tags as $tag){
+		$tag = str_replace("&#44;", ",", $tag);
+		$prepend .= '<span class="reply rp-tag">#'.$tag.'</span> ';
+	}
+	$prepend .= "</div>\n";
+	
+	$content = $prepend.$content;
+}
+
+$postlen = strlen($content);
+if(isset($_POST["trunc"])){
+	$content = formatLongMessage($content);
 }
 
 if(isset($_FILES["image"])
