@@ -10,7 +10,7 @@
 <?php 
 
 if(!isset($path)){
-	$path = "/PostTester";
+	$path = ".";
 }
 
 include 'assets/postjelly.php'; 
