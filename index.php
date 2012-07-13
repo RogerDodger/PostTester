@@ -13,19 +13,19 @@ if(!isset($path)){
 	$path = ".";
 }
 
-include 'assets/postjelly.php'; 
-include 'assets/CParse.php';
-include 'assets/formjelly.php';
+include 'lib/post_parser.php'; 
+include 'lib/body_parser.php';
+include 'lib/form_handler.php';
 
 ?>
 	
 
 
-<link rel="stylesheet" type="text/css" href="<?php echo $path.'/assets/img_global.css'?>" />
-<link rel="stylesheet" type="text/css" href="<?php echo $path.'/assets/colgate.css'?>" />
-<link rel="stylesheet" type="text/css" href="<?php echo $path.'/assets/post-tester.css'?>" />
+<link rel="stylesheet" type="text/css" href="<?php echo $path.'/lib/img_global.css'?>" />
+<link rel="stylesheet" type="text/css" href="<?php echo $path.'/lib/colgate.css'?>" />
+<link rel="stylesheet" type="text/css" href="<?php echo $path.'/lib/post-tester.css'?>" />
 
-<script type="text/javascript" src="<?php echo $path.'/assets/pt-php.js'?>" charset="utf-8"></script>
+<script type="text/javascript" src="<?php echo $path.'/lib/site.js'?>" charset="utf-8"></script>
 <script type="text/javascript">
 window.onload = function (){
 	togboard('<?php echo isset($_POST["board"]) ? $_POST["board"] : 'fic'; ?>');
@@ -174,13 +174,13 @@ function _mkboardlnk($title, $board) {
 
 <?php if ($image["exists"]): ?>
 <span class="filesize">
-	File <a href="<?php echo $path.'/assets/images/'.$image["id"].'"'; ?>><?php echo $image["id"]; ?></a> - 
+	File <a href="<?php echo $path.'/lib/images/'.$image["id"].'"'; ?>><?php echo $image["id"]; ?></a> - 
 		(<?php echo $image["size"] ?>, 
 		<span class="dimensions"><?php echo $image["width"].'x'.$image["height"] ?></span>, 
 		<?php echo $image["name"]; ?>)
 </span>
 <br />
-<a href="#" onclick="return false"><img <?php echo "src=\"$path/assets/images/{$image["id"]}\" height=\"{$image["h"]}\" width=\"{$image["w"]}\""?> class="thumb" /></a>
+<a href="#" onclick="return false"><img <?php echo "src=\"$path/lib/images/{$image["id"]}\" height=\"{$image["h"]}\" width=\"{$image["w"]}\""?> class="thumb" /></a>
 <?php endif; ?>
 
 <label>
@@ -197,7 +197,7 @@ function _mkboardlnk($title, $board) {
 <br />
 
 <blockquote>
-	<div id="content"><?php if($help===true) {include 'assets/help.php';} else {echo $content;} ?></div>
+	<div id="content"><?php if($help===true) {include 'lib/help.php';} else {echo $content;} ?></div>
 </blockquote>
 
 <div class="postfooter">
