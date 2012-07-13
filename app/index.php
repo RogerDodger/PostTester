@@ -10,7 +10,7 @@
 <?php 
 
 if(!isset($path)){
-	$path = ".";
+	$path = "..";
 }
 
 include 'assets/postjelly.php'; 
@@ -37,7 +37,7 @@ window.onload = function (){
 <body>
 <?php 
 function _mkboardlnk($title, $board) {
-	echo '<a name="nav" href="#" class="navbarboard" onclick="return togboard(\''.$board.'\')" id="'.$board.'" title="'.$title.'">/'.$board.'/</a>';
+	echo '<a name="nav" href="#" class="navbarboard" onclick="return togboard(\''.$board.'\')" id="'.$board.'" title="'.$title.'">/'.$board.'/</a>'."\n";
 }
 ?>
 <div id="verytopbar" class="darkbar" style="position: fixed; left: 0px; top: 0px; ">
@@ -46,53 +46,34 @@ function _mkboardlnk($title, $board) {
 			<a class="navbarboard" href="#" onclick="return false" title="All boards">/all/</a>
 			<span class="navbarsection">
 				<?php _mkboardlnk("Site Issues", "meta"); ?>
-				
 				<?php _mkboardlnk("Twilight's Library", "arch"); ?>
-				
 			</span>
 			<span class="navbarsection">
 				<?php _mkboardlnk("Friendship is Magic", "pony"); ?>
-				
 				<?php _mkboardlnk("Pictures", "pic"); ?>
-				
 				<?php _mkboardlnk("Merchandise", "merch"); ?>
-				
 				<?php _mkboardlnk("Oatmeal", "oat"); ?>
-				
 			</span>
 			<span class="navbarsection">
 				<?php _mkboardlnk("Art", "art"); ?>
-				
 				<?php _mkboardlnk("Fanfics", "fic"); ?>
-				
 				<?php _mkboardlnk("Music/video", "media"); ?>
-				
 				<?php _mkboardlnk("Projects", "collab"); ?>
-				
 			</span>
 			<span class="navbarsection">
 				<?php _mkboardlnk("Roleplay", "rp"); ?>
-				
 				<?php _mkboardlnk("Roleplay Lounge", "ooc"); ?>
-				
 			</span>
 			<span class="navbarsection">
 				<?php _mkboardlnk("Phoenix", "phoenix"); ?>
-				
 				<?php _mkboardlnk("Music", "vinyl"); ?>
-				
 				<?php _mkboardlnk("Games", "g"); ?>
-				
 				<?php _mkboardlnk("Discussion", "dis"); ?>
-				
 				<?php _mkboardlnk("Chat", "chat"); ?>
-				
 			</span>
 			<span class="navbarsection">
 				<?php _mkboardlnk("Gala", "gala"); ?>
-				
 				<?php _mkboardlnk("World", "int"); ?>
-				
 			</span>
 		</span>
 	</div>
